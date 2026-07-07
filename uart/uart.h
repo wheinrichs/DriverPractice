@@ -24,5 +24,8 @@ typedef struct{
     ring_buffer_t rx_buffer;
 }uart_driver_t;
 
-driver_status_t init(uart_driver_t *uart, uart_regs_t* regs, uint32_t baud_divisor);
-driver_status_t write_byte(uart_driver_t *uart, uint8_t byte, uint32_t timeout_ms);
+driver_status_t uart_init(uart_driver_t *uart, uart_regs_t* regs, uint32_t baud_divisor);
+driver_status_t uart_write_byte(uart_driver_t *uart, uint8_t byte, uint32_t timeout_ms);
+driver_status_t uart_write_buffer(uart_driver_t *uart, const uint8_t *buffer, uint32_t len, uint32_t timeout_ms);
+void uart_IRQ_handler(uart_driver_t *uart);
+driver_status_t read_byte(uart_driver_t *uart, uint8_t *out);
