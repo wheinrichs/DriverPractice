@@ -42,10 +42,10 @@ static void test_uart_init_success(void) {
 
     TEST_ASSERT(status == DRIVER_OK);
 
-    TEST_ASSERT((uart.CR1 & USART_CR1_TE) != 0);
-    TEST_ASSERT((uart.CR1 & USART_CR1_RE) != 0);
-    TEST_ASSERT((uart.CR1 & USART_CR1_UE) != 0);
-    TEST_ASSERT((uart.CR1 & USART_CR1_RXNEIE) != 0);
+    TEST_ASSERT((uart.CR1 & UART_CR1_TE) != 0);
+    TEST_ASSERT((uart.CR1 & UART_CR1_RE) != 0);
+    TEST_ASSERT((uart.CR1 & UART_CR1_UE) != 0);
+    TEST_ASSERT((uart.CR1 & UART_CR1_RXNEIE) != 0);
 
     TEST_ASSERT(uart.BRR != 0);
 }
@@ -66,7 +66,7 @@ static void test_uart_init_invalid_args(void) {
 static void test_uart_write_byte_success(void) {
     uart_regs_t uart = {0};
 
-    uart.SR |= USART_SR_TXE;
+    uart.SR |= UART_SR_TXE;
 
     driver_status_t status = uart_write_byte(&uart, 0x42, 10U);
 
@@ -84,7 +84,7 @@ static void test_uart_write_byte_timeout(void) {
         If your timeout logic requires millis() to advance, you will need
         a fake millis() in the test build.
     */
-    uart.SR &= ~USART_SR_TXE;
+    uart.SR &= ~UART_SR_TXE;
 
     driver_status_t status = uart_write_byte(&uart, 0x42, 0U);
 
@@ -100,7 +100,7 @@ static void test_uart_write_buffer(void) {
         0x33
     };
 
-    uart.SR |= USART_SR_TXE;
+    uart.SR |= UART_SR_TXE;
 
     driver_status_t status = uart_write(&uart,
                                         data,
@@ -125,7 +125,7 @@ static void test_uart_irq_receives_byte(void) {
         RXNE means receive data register not empty.
         DR contains the received byte.
     */
-    uart.SR |= USART_SR_RXNE;
+    uart.SR |= UART_SR_RXNE;
     uart.DR = 0x5A;
 
     uart_irq_handler(&uart);
