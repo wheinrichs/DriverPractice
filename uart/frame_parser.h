@@ -12,4 +12,4 @@ typedef enum {
     FRAME_ERR_BAD_CHECKSUM
 }frame_status_t;
 
-frame_status_t parse(const uint8_t *buffer, uint16_t len, uint64_t *out, uint8_t len_out);
+frame_status_t parse(const uint8_t *buffer, uint16_t len, uint64_t *out, uint8_t* len_out);
