@@ -1,0 +1,9 @@
+typedef enum {
+    DRIVER_OK = 0,
+    DRIVER_ERR_INVALID_ARG,
+    DRIVER_ERR_TIMEOUT,
+    DRIVER_ERR_BUSY,
+    DRIVER_ERR_FULL,
+    DRIVER_ERR_EMPTY,
+    DRIVER_ERR_HW
+}driver_status_t;
