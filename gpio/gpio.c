@@ -2,6 +2,12 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+void gpio_init(gpio_pin_t *gpio, gpio_regs_t *regs, uint8_t pin) {
+    gpio->pin = pin;
+    gpio->regs = regs;
+    return;
+}
+
 void gpio_set_mode(volatile gpio_regs_t *reg, uint8_t pin, gpio_mode_t mode) {
     if(reg == NULL) {
         return;

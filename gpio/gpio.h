@@ -16,6 +16,13 @@ typedef enum {
     ANALOG = 3
 }gpio_mode_t;
 
+typedef struct {
+    gpio_regs_t *regs;
+    uint8_t pin;
+} gpio_pin_t;
+
+void gpio_init(gpio_pin_t *gpio, gpio_regs_t * regs, uint8_t pin);
+
 void gpio_set_mode(volatile gpio_regs_t *reg, uint8_t pin, gpio_mode_t mode);
 
 bool gpio_read_pin(volatile gpio_regs_t *reg, uint8_t pin);

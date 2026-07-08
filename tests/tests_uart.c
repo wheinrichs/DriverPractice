@@ -140,7 +140,7 @@ static void test_uart_irq_receives_byte(void) {
 static void test_uart_read_byte_from_rx_buffer(void) {
     uart_regs_t uart = {0};
 
-    uart.SR |= USART_SR_RXNE;
+    uart.SR |= UART_SR_RXNE;
     uart.DR = 0xA5;
 
     uart_irq_handler(&uart);
